@@ -12,13 +12,8 @@ import (
 // will output the contents of that file to the console. You can use the time.Sleep()
 // function to wait for the child goroutines to complete (until you know how to do this better).
 // Call the program catfiles.go. Here’s how you can execute this Go program:
-// go run catfiles.go txtfile1 txtfile2 txtfile3
 
-// func printFileContent(fileName string){
-// 	fileContent, err := os.ReadFile(fileName)
-// 	if err  != nil
-
-// }
+// go run chapter2/catfile.go chapter2/txtfile1 chapter2/txtfile2 chapter2/txtfile3
 
 func main() {
 	fileName := os.Args[1:]
