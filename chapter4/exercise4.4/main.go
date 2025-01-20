@@ -24,12 +24,12 @@ func countLetters(url string, frequency map[string]int, rwMutex *sync.RWMutex) {
 	}
 	body, _ := io.ReadAll(resp.Body)
 	wordRegex := regexp.MustCompile(`[a-zA-Z]+`)
+	rwMutex.Lock()
 	for _, word := range wordRegex.FindAllString(string(body), -1) {
 		wordLower := strings.ToLower(word)
-		rwMutex.Lock()
 		frequency[wordLower] += 1
-		rwMutex.Unlock()
 	}
+	rwMutex.Unlock()
 	fmt.Println("Completed:", url)
 }
 
