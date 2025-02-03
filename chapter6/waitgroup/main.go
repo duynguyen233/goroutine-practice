@@ -40,17 +40,17 @@ func (wg *WaitGrp) Done() {
 	wg.cond.L.Unlock()
 }
 
-func DoWork(i int, wg *WaitGrp) {
+func DoWork(i int, wg *sync.WaitGroup) {
 	fmt.Println("Doing task: ", i)
 	time.Sleep(1 * time.Second)
 	wg.Done()
 }
 
 func main() {
-	wg := NewWaitGrp()
+	wg := sync.WaitGroup{}
 	wg.Add(15)
 	for i := 0; i < 15; i++ {
-		go DoWork(i, wg)
+		go DoWork(i, &wg)
 	}
 	wg.Wait()
 	fmt.Println("All job is done")
